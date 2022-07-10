@@ -1,0 +1,38 @@
+<mapreducescript scriptid="customscript_mr_delete_files_demo">
+  <description>Used to demonstrate the using SDF and GitHub Actions at SuiteWorld.</description>
+  <isinactive>F</isinactive>
+  <name>MR Delete Files Demo</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/map-reduce-scripts/mr-delete-files-demo.js]</scriptfile>
+  <scriptcustomfields>
+    <scriptcustomfield scriptid="custscript_delete_files_demo_search">
+      <accesslevel>2</accesslevel>
+      <applyformatting>F</applyformatting>
+      <checkspelling>F</checkspelling>
+      <defaultchecked>F</defaultchecked>
+      <defaultselection></defaultselection>
+      <defaultvalue></defaultvalue>
+      <description>The id of the saved search set to delete files.</description>
+      <displayheight></displayheight>
+      <displaytype>NORMAL</displaytype>
+      <displaywidth></displaywidth>
+      <dynamicdefault></dynamicdefault>
+      <fieldtype>TEXT</fieldtype>
+      <help>The id of the saved search set to delete files.</help>
+      <isformula>F</isformula>
+      <ismandatory>F</ismandatory>
+      <label>Delete Files Demo Search</label>
+      <linktext></linktext>
+      <maxlength></maxlength>
+      <maxvalue></maxvalue>
+      <minvalue></minvalue>
+      <onparentdelete></onparentdelete>
+      <searchlevel>2</searchlevel>
+      <selectrecordtype></selectrecordtype>
+      <setting></setting>
+      <storevalue>T</storevalue>
+    </scriptcustomfield>
+  </scriptcustomfields>
+</mapreducescript>
