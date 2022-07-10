@@ -1,5 +1,5 @@
 <deploy>
     <files>
-        <path>~/FileCabinet/SuiteScripts/map-reduce-scripts/mr-delete-files.js</path>
+        <path>~/FileCabinet/SuiteScripts/workflow-action-scripts/mr-delete-files-demo.js</path>
     </files>
 </deploy>
