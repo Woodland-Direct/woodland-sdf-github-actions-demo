@@ -57,5 +57,4 @@ jobs:
     - name: Deploy NetSuite scripts
       run: |
         sudo chmod 755 .github/scripts/sdf-deploy.sh
-        .github/scripts/sdf-deploy.sh ${{ secrets.SDF_USER_PROD_KEY }} ${{ se
-crets.SDF_USER_PROD_SECRET }} ${{ secrets.SDF_ACCOUNT_NUMBER }}
+        .github/scripts/sdf-deploy.sh ${{ secrets.SDF_USER_PROD_KEY }} ${{ secrets.SDF_USER_PROD_SECRET }} ${{ secrets.SDF_ACCOUNT_NUMBER }}
