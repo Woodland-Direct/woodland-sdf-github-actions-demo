@@ -7,7 +7,9 @@
 
 define(['N/file', 'N/runtime'], function (file, runtime) {
   const getInputData = () => {
-    var searchID = runtime.getCurrentScript().getParameter({ name: 'custscript_delete_files_files_search' })
+    var searchID = runtime
+      .getCurrentScript()
+      .getParameter({ name: 'custscript_delete_files_demo_search' })
     return {
       type: 'search',
       id: searchID
@@ -20,14 +22,13 @@ define(['N/file', 'N/runtime'], function (file, runtime) {
       const internalID = context.key
 
       log.debug(loggerTitle, `internalID: ${internalID}`)
-        
+
       // delete file with internal id
       file.delete({
         id: internalID
       })
 
       log.audit(loggerTitle, `File Deleted: ${internalID}`)
-
     } catch (e) {
       log.error(loggerTitle, `Error: ${e}`)
     }
