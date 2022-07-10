@@ -15,22 +15,22 @@ define(['N/file', 'N/runtime'], function (file, runtime) {
   }
 
   const reduce = context => {
-      const loggerTitle = 'reduce'
-      try {
-        const internalID = context.key
+    const loggerTitle = 'reduce'
+    try {
+      const internalID = context.key
 
-        log.debug(loggerTitle, `internalID: ${internalID}`)
-          
-        // delete file with internal id
-        file.delete({
-          id: internalID
-        })
+      log.debug(loggerTitle, `internalID: ${internalID}`)
+        
+      // delete file with internal id
+      file.delete({
+        id: internalID
+      })
 
-        log.audit(loggerTitle, `File Deleted: ${internalID}`)
+      log.audit(loggerTitle, `File Deleted: ${internalID}`)
 
-      } catch (e) {
-        log.error(loggerTitle, `Error: ${e}`)
-      }
+    } catch (e) {
+      log.error(loggerTitle, `Error: ${e}`)
+    }
   }
 
   return {
