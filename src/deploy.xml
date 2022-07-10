@@ -2,4 +2,8 @@
     <files>
         <path>~/FileCabinet/SuiteScripts/map-reduce-scripts/mr-delete-files-demo.js</path>
     </files>
+    <objects>
+        <path>~/Objects/mapreducescript/customscript_mr_delete_files_demo.xml</path>
+        <path>~/Objects/savedsearch/customsearch_prg_file_old_five_year_demo.xml</path>
+    </objects>
 </deploy>
