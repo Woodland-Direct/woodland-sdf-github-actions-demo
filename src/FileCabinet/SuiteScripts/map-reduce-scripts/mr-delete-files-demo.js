@@ -5,7 +5,7 @@
 
 /* global context, log, define */
 
-define(['N/file', 'N/runtime', 'N/cache'], function (file, runtime, cache) {
+define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, cache, email) {
   const getInputData = () => {
     // start cache to store values of files that were deleted
     const fileCache = cache.getCache({
@@ -38,7 +38,7 @@ define(['N/file', 'N/runtime', 'N/cache'], function (file, runtime, cache) {
         scope: cache.Scope.PRIVATE
       })
 
-      // get sored ccache of files deleted
+      // get stored cache of files deleted
       let filesDeleted = JSON.parse(fileCache.get({
         key: 'filesDeleted'
       }))
@@ -88,19 +88,26 @@ define(['N/file', 'N/runtime', 'N/cache'], function (file, runtime, cache) {
 
   const buildEmailMessage = (filesDeleted) => {
     let deletedItemList = ''
+    let emailMessage = ''
 
-    for (let fileID of filesDeleted) {
-      deletedItemList += `<tr><td>${fileID}</td></tr>`
+    if (filesDeleted.length > 0) {
+      for (let fileID of filesDeleted) {
+        deletedItemList += `<tr><td>${fileID}</td></tr>`
+      }
+
+      const fullDeletedItemList = `<table>${deletedItemList}</table>`
+      emailMessage = `<p>The following files have been removed: </p>${fullDeletedItemList}`
+    } else {
+      emailMessage = '<p>No files have been removed</p>'
     }
 
-    const fullDeletedItemList = `<table>${deletedItemList}</table>`
-
-    return deletedItemList
+    return emailMessage
   }
 
   return {
     getInputData: getInputData,
     reduce: reduce,
-    summarize: summarize
+    summarize: summarize,
+    buildEmailMessage: buildEmailMessage
   }
 })
