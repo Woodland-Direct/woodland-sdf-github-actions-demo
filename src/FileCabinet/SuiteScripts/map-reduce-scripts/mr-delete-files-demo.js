@@ -88,13 +88,18 @@ define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, c
 
   const buildEmailMessage = (filesDeleted) => {
     let deletedItemList = ''
+    let emailMessage = ''
 
-    for (let fileID of filesDeleted) {
-      deletedItemList += `<tr><td>${fileID}</td></tr>`
+    if (filesDeleted.length > 0) {
+      for (let fileID of filesDeleted) {
+        deletedItemList += `<tr><td>${fileID}</td></tr>`
+      }
+
+      const fullDeletedItemList = `<table>${deletedItemList}</table>`
+      emailMessage = `<p>The following files have been removed: </p>${fullDeletedItemList}`
+    } else {
+      emailMessage = '<p>No files have been removed</p>'
     }
-
-    const fullDeletedItemList = `<table>${deletedItemList}</table>`
-    const emailMessage = `<p>The following files have been removed: </p>${fullDeletedItemList}`
 
     return emailMessage
   }
