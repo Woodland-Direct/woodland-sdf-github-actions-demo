@@ -5,7 +5,7 @@
 
 /* global context, log, define */
 
-define(['N/file', 'N/runtime', 'N/cache'], function (file, runtime, cache) {
+define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, cache, email) {
   const getInputData = () => {
     // start cache to store values of files that were deleted
     const fileCache = cache.getCache({
@@ -38,7 +38,7 @@ define(['N/file', 'N/runtime', 'N/cache'], function (file, runtime, cache) {
         scope: cache.Scope.PRIVATE
       })
 
-      // get sored ccache of files deleted
+      // get stored cache of files deleted
       let filesDeleted = JSON.parse(fileCache.get({
         key: 'filesDeleted'
       }))
@@ -94,13 +94,15 @@ define(['N/file', 'N/runtime', 'N/cache'], function (file, runtime, cache) {
     }
 
     const fullDeletedItemList = `<table>${deletedItemList}</table>`
+    const emailMessage = `<p>The following files have been removed: </p>${fullDeletedItemList}`
 
-    return deletedItemList
+    return emailMessage
   }
 
   return {
     getInputData: getInputData,
     reduce: reduce,
-    summarize: summarize
+    summarize: summarize,
+    buildEmailMessage: buildEmailMessage
   }
 })
