@@ -7,7 +7,7 @@ on:
   push:
     branches: [ main ]
 
-jobs:
+jobs
   backup-and-merge:
     runs-on: ubuntu-latest
     strategy:
@@ -52,10 +52,9 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
-        SOURCE_DIR: "/home/runner/work/NetSuite-SDF/NetSuite-SDF/backup/"
-        DEST_DIR: "netsuite/backup"
+        SOURCE_DIR: "/home/runner/work/woodland-sdf-github-actions-demo/woodland-sdf-github-actions-demo/backup/"
+        DEST_DIR: "netsuite/demo-backup"
     - name: Deploy NetSuite scripts
       run: |
         sudo chmod 755 .github/scripts/sdf-deploy.sh
-        .github/scripts/sdf-deploy.sh ${{ secrets.SDF_USER_PROD_KEY }} ${{ se
-crets.SDF_USER_PROD_SECRET }} ${{ secrets.SDF_ACCOUNT_NUMBER }}
+        .github/scripts/sdf-deploy.sh ${{ secrets.SDF_USER_PROD_KEY }} ${{ secrets.SDF_USER_PROD_SECRET }} ${{ secrets.SDF_ACCOUNT_NUMBER }}

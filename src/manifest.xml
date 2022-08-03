@@ -1,4 +1,10 @@
 <manifest projecttype="ACCOUNTCUSTOMIZATION">
   <projectname>woodland-sdf-github-actions-demo</projectname>
   <frameworkversion>1.0</frameworkversion>
+  <dependencies>
+    <features>
+      <feature required="true">SERVERSIDESCRIPTING</feature>
+      <feature required="false">CREATESUITEBUNDLES</feature>
+    </features>
+  </dependencies>
 </manifest>
