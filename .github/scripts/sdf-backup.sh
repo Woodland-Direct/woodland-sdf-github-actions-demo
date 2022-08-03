@@ -49,3 +49,5 @@ rm -rf backup/zip
 
 #remove credentials
 suitecloud account:manageauth --remove wd-prod-ci
+
+
