@@ -1,6 +1,6 @@
 <mapreducescript scriptid="customscript_mr_delete_files_demo">
   <description>Used to demonstrate the using SDF and GitHub Actions at SuiteWorld.</description>
-  <isinactive>F</isinactive>
+  <isinactive>T</isinactive>
   <name>MR Delete Files Demo</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
