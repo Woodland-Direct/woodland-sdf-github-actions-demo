@@ -21,7 +21,7 @@ describe('buildEmailMessage', () => {
   test('no files', () => {
     const fileNameArray = []
 
-    expect(deleteFilesDemo.buildEmailMessage(fileNameArray)).toEqual('<p>The following files have been removed: </p><table></table>')
+    expect(deleteFilesDemo.buildEmailMessage(fileNameArray)).toEqual('<p>No files have been removed</p>')
   })
 
 })
