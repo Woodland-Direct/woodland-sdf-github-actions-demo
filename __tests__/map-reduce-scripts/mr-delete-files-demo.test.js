@@ -5,7 +5,7 @@ describe('buildEmailMessage', () => {
     const fileNameArray = [
       'transaction_reports.csv'
     ]
-    expect(deleteFilesDemo.buildEmailMessage(fileNameArray)).toEqual('<p>The following files have been removed:</p><table><tr><td>transaction_reports.csv</td></tr></table>')
+    expect(deleteFilesDemo.buildEmailMessage(fileNameArray)).toEqual('<p>The following files have been removed: </p><table><tr><td>transaction_reports.csv</td></tr></table>')
   })
 
   test('multiple files', () => {
