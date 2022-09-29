@@ -45,17 +45,22 @@ define(['N/file', 'N/runtime', 'N/email'], function (file, runtime, cache, email
   }
 
   const summarize = context => {
-    const mailMessage = buildEmailMessage(context)
+    let filesDeleted = []
+    context.output.iterator().each((key, value) => {
+      filesDeleted.push(value)
+    })
+
+    const mailMessage = buildEmailMessage(filesDeleted)
   }
 
-  const buildEmailMessage = (context) => {
+  const buildEmailMessage = (filesDeleted) => {
     let deletedItemList = ''
     let emailMessage = ''
 
     if (filesDeleted.length > 0) {
-      context.output.iterator().each((key, value) => {
-        deletedItemList += `<tr><td>${value}</td></tr>`
-      })
+      for (let fileID of filesDeleted) {
+        deletedItemList += `<tr><td>${fileID}</td></tr>`
+      }
 
       const fullDeletedItemList = `<table>${deletedItemList}</table>`
       emailMessage = `<p>The following files have been removed: </p>${fullDeletedItemList}`
