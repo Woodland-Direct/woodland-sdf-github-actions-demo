@@ -5,20 +5,8 @@
 
 /* global context, log, define */
 
-define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, cache, email) {
+define(['N/file', 'N/runtime', 'N/email'], function (file, runtime, cache, email) {
   const getInputData = () => {
-    // start cache to store values of files that were deleted
-    const fileCache = cache.getCache({
-      name: 'FILES_DELETED',
-      scope: cache.Scope.PRIVATE
-    })
-
-    // intiate an empty array in the cache for files deleted
-    fileCache.put({
-      key: 'filesDeleted',
-      value: '[]'
-    })
-
     var searchID = runtime.getCurrentScript().getParameter({ name: 'custscript_delete_files_files_search' })
     return {
       type: 'search',
@@ -33,15 +21,6 @@ define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, c
 
       log.debug(loggerTitle, 'internalID: ' + internalID)
 
-      const fileCache = cache.getCache({
-        name: 'FILES_DELETED',
-        scope: cache.Scope.PRIVATE
-      })
-
-      // get stored cache of files deleted
-      let filesDeleted = JSON.parse(fileCache.get({
-        key: 'filesDeleted'
-      }))
 
       // get the name of the file that is to be deleted
       const fileObj = file.load({
@@ -55,14 +34,7 @@ define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, c
         id: internalID
       })
 
-      // push file name into array of deleted files
-      filesDeleted.push(fileName)
-
-      // store the updated array in the cache again
-      fileCache.put({
-        key: 'filesDeleted',
-        value: JSON.stringify(filesDeleted)
-      })
+      context.write(contextValues.key, fileName)
 
       log.audit(loggerTitle, 'File Deleted: ' + internalID)
 
@@ -73,27 +45,17 @@ define(['N/file', 'N/runtime', 'N/cache', 'N/email'], function (file, runtime, c
   }
 
   const summarize = context => {
-    const fileCache = cache.getCache({
-      name: 'FILES_DELETED',
-      scope: cache.Scope.PRIVATE
-    })
-
-    const filesDeleted = JSON.parse(fileCache.get({
-      key: 'filesDeleted'
-    }))
-
-    const mailMessage = buildEmailMessage(filesDeleted)
-
+    const mailMessage = buildEmailMessage(context)
   }
 
-  const buildEmailMessage = (filesDeleted) => {
+  const buildEmailMessage = (context) => {
     let deletedItemList = ''
     let emailMessage = ''
 
     if (filesDeleted.length > 0) {
-      for (let fileID of filesDeleted) {
-        deletedItemList += `<tr><td>${fileID}</td></tr>`
-      }
+      context.output.iterator().each((key, value) => {
+        deletedItemList += `<tr><td>${value}</td></tr>`
+      })
 
       const fullDeletedItemList = `<table>${deletedItemList}</table>`
       emailMessage = `<p>The following files have been removed: </p>${fullDeletedItemList}`
